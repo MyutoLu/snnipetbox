@@ -5,6 +5,7 @@ import (
 	"flag"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
+	"myuto.net/snippetbox/internal/models"
 	"net/http"
 	"os"
 )
@@ -12,6 +13,7 @@ import (
 type application struct {
 	errorLog *log.Logger
 	infoLog  *log.Logger
+	snippets *models.SnippetModel
 }
 
 func main() {
@@ -33,6 +35,7 @@ func main() {
 	app := &application{
 		errorLog: errorLog,
 		infoLog:  infoLog,
+		snippets: &models.SnippetModel{DB: db},
 	}
 
 	srv := &http.Server{
