@@ -1,8 +1,10 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"html/template"
+	"myuto.net/snippetbox/internal/models"
 	"net/http"
 	"strconv"
 )
@@ -43,7 +45,16 @@ func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
 		app.notFound(w)
 		return
 	}
-	fmt.Fprintf(w, "Display a specific snippet with ID %d...", id)
+	snippet, err := app.snippets.Get(id)
+	if err != nil {
+		if errors.Is(err, models.ErrNoRecord) {
+			app.notFound(w)
+		} else {
+			app.serverError(w, err)
+		}
+	}
+	return
+	fmt.Fprintf(w, "%+v", snippet)
 }
 
 // snippetCreate 创建博文
