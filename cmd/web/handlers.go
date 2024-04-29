@@ -20,30 +20,14 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		app.serverError(w, err)
 		return
 	}
-	for _, snippets := range snippets {
-		fmt.Fprintf(w, "%+v\n", snippets)
-	}
+	//for _, snippets := range snippets {
+	//	fmt.Fprintf(w, "%+v\n", snippets)
+	//}
+	data := app.newTemplateData(r)
+	data.Snippets = snippets
 
-	//files := []string{
-	//	"./ui/html/base.tmpl",
-	//	"./ui/html/partials/nav.tmpl",
-	//	"./ui/html/pages/home.tmpl",
-	//}
-	//
-	//ts, err := template.ParseFiles(files...)
-	//if err != nil {
-	//	//log.Print(err.Error())
-	//	app.serverError(w, err)
-	//	return
-	//}
-	//err = ts.ExecuteTemplate(w, "base", nil)
-	//if err != nil {
-	//	//log.Print(err.Error())
-	//	//app.errorLog.Print(err.Error())
-	//	//http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-	//	app.serverError(w, err)
-	//	return
-	//}
+	app.render(w, http.StatusOK, "home.tmpl", data)
+
 }
 
 // snippetView 根据id查
@@ -63,7 +47,11 @@ func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "%+v", snippet)
+	data := app.newTemplateData(r)
+	data.Snippet = snippet
+	app.render(w, http.StatusOK, "view.tmpl", data)
+
+	//fmt.Fprintf(w, "%+v", snippet)
 }
 
 // snippetCreate 创建博文
