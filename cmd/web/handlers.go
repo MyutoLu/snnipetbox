@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"html/template"
 	"myuto.net/snippetbox/internal/models"
 	"net/http"
 	"strconv"
@@ -16,26 +15,35 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	files := []string{
-		"./ui/html/base.tmpl",
-		"./ui/html/partials/nav.tmpl",
-		"./ui/html/pages/home.tmpl",
+	snippets, err := app.snippets.Latest()
+	if err != nil {
+		app.serverError(w, err)
+		return
+	}
+	for _, snippets := range snippets {
+		fmt.Fprintf(w, "%+v\n", snippets)
 	}
 
-	ts, err := template.ParseFiles(files...)
-	if err != nil {
-		//log.Print(err.Error())
-		app.serverError(w, err)
-		return
-	}
-	err = ts.ExecuteTemplate(w, "base", nil)
-	if err != nil {
-		//log.Print(err.Error())
-		//app.errorLog.Print(err.Error())
-		//http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		app.serverError(w, err)
-		return
-	}
+	//files := []string{
+	//	"./ui/html/base.tmpl",
+	//	"./ui/html/partials/nav.tmpl",
+	//	"./ui/html/pages/home.tmpl",
+	//}
+	//
+	//ts, err := template.ParseFiles(files...)
+	//if err != nil {
+	//	//log.Print(err.Error())
+	//	app.serverError(w, err)
+	//	return
+	//}
+	//err = ts.ExecuteTemplate(w, "base", nil)
+	//if err != nil {
+	//	//log.Print(err.Error())
+	//	//app.errorLog.Print(err.Error())
+	//	//http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	//	app.serverError(w, err)
+	//	return
+	//}
 }
 
 // snippetView 根据id查
@@ -52,8 +60,9 @@ func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
 		} else {
 			app.serverError(w, err)
 		}
+		return
 	}
-	return
+
 	fmt.Fprintf(w, "%+v", snippet)
 }
 
