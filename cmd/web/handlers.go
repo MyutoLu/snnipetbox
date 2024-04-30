@@ -7,6 +7,8 @@ import (
 	"myuto.net/snippetbox/internal/models"
 	"net/http"
 	"strconv"
+	"strings"
+	"unicode/utf8"
 )
 
 // home
@@ -80,6 +82,28 @@ func (app *application) snippetCreatePost(w http.ResponseWriter, r *http.Request
 	expires, err := strconv.Atoi(r.PostForm.Get("expires"))
 	if err != nil {
 		app.clientError(w, http.StatusBadRequest)
+		return
+	}
+
+	fileErrors := make(map[string]string)
+	// title 不能为空和超过100个字符
+	if strings.TrimSpace(title) == "" {
+		fileErrors["title"] = "This field can't be blank"
+	} else if utf8.RuneCountInString(title) > 100 {
+		fileErrors["title"] = "Title can't be more than 100 characters"
+	}
+
+	// content 不能为空
+	if strings.TrimSpace(content) == "" {
+		fileErrors["content"] = "This field can't be blank"
+	}
+
+	if expires != 1 && expires != 7 && expires != 365 {
+		fileErrors["expires"] = "This field is invalid"
+	}
+
+	if len(fileErrors) > 0 {
+		fmt.Fprint(w, fileErrors)
 		return
 	}
 	id, err := app.snippets.Insert(title, content, expires)
