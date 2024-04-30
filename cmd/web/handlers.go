@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"github.com/julienschmidt/httprouter"
 	"myuto.net/snippetbox/internal/models"
 	"net/http"
 	"strconv"
@@ -10,10 +11,10 @@ import (
 
 // home
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		app.notFound(w)
-		return
-	}
+	//if r.URL.Path != "/" {
+	//	app.notFound(w)
+	//	return
+	//}
 
 	snippets, err := app.snippets.Latest()
 	if err != nil {
@@ -32,7 +33,9 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
 // snippetView 根据id查
 func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+	// id, err := strconv.Atoi(r.URL.Query().Get("id"))
+	params := httprouter.ParamsFromContext(r.Context())
+	id, err := strconv.Atoi(params.ByName("id"))
 	if err != nil || id < 1 {
 		app.notFound(w)
 		return
@@ -54,24 +57,35 @@ func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
 	//fmt.Fprintf(w, "%+v", snippet)
 }
 
+func (app *application) sinppetCreate(w http.ResponseWriter, r *http.Request) {
+	data := app.newTemplateData(r)
+	app.render(w, http.StatusOK, "create.tmpl", data)
+}
+
 // snippetCreate 创建博文
-func (app *application) snippetCreate(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		w.Header().Set("Allow", http.MethodPost)
-		//http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
-		app.clientError(w, http.StatusMethodNotAllowed)
+func (app *application) snippetCreatePost(w http.ResponseWriter, r *http.Request) {
+	//if r.Method != http.MethodPost {
+	//	w.Header().Set("Allow", http.MethodPost)
+	//	//http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+	//	app.clientError(w, http.StatusMethodNotAllowed)
+	//	return
+	//}
+	err := r.ParseForm()
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
 		return
 	}
-	title := "O sanil"
-	content := "O sanil\nClimb Mount Fuji,\nBut slowly!\n\n- Kobayashi Issa"
-	expires := 7
-
+	title := r.PostForm.Get("title")
+	content := r.PostForm.Get("content")
+	expires, err := strconv.Atoi(r.PostForm.Get("expires"))
+	if err != nil {
+		app.clientError(w, http.StatusBadRequest)
+		return
+	}
 	id, err := app.snippets.Insert(title, content, expires)
 	if err != nil {
 		app.serverError(w, err)
 		return
 	}
-	//w.Write([]byte("Create a new snippet..."))
-
-	http.Redirect(w, r, fmt.Sprintf("/snippet/view?id=%d", id), http.StatusSeeOther)
+	http.Redirect(w, r, fmt.Sprintf("/snippet/view/%d", id), http.StatusSeeOther)
 }
