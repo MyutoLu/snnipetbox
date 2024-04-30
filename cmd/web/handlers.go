@@ -5,11 +5,18 @@ import (
 	"fmt"
 	"github.com/julienschmidt/httprouter"
 	"myuto.net/snippetbox/internal/models"
+	"myuto.net/snippetbox/internal/validator"
 	"net/http"
 	"strconv"
-	"strings"
-	"unicode/utf8"
 )
+
+type snippetCreateForm struct {
+	Title   string `form:"title"`
+	Content string `form:"content"`
+	Expires int    `form:"expires"`
+	//FiledErrors map[string]string
+	validator.Validator `form:"-"`
+}
 
 // home
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
@@ -59,8 +66,11 @@ func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
 	//fmt.Fprintf(w, "%+v", snippet)
 }
 
-func (app *application) sinppetCreate(w http.ResponseWriter, r *http.Request) {
+func (app *application) snippetCreate(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
+	data.Form = snippetCreateForm{
+		Expires: 365,
+	}
 	app.render(w, http.StatusOK, "create.tmpl", data)
 }
 
@@ -72,41 +82,67 @@ func (app *application) snippetCreatePost(w http.ResponseWriter, r *http.Request
 	//	app.clientError(w, http.StatusMethodNotAllowed)
 	//	return
 	//}
-	err := r.ParseForm()
-	if err != nil {
-		app.clientError(w, http.StatusBadRequest)
-		return
-	}
-	title := r.PostForm.Get("title")
-	content := r.PostForm.Get("content")
-	expires, err := strconv.Atoi(r.PostForm.Get("expires"))
+	//err := r.ParseForm()
+	//if err != nil {
+	//	app.clientError(w, http.StatusBadRequest)
+	//	return
+	//}
+
+	var form snippetCreateForm
+	err := app.decodePostForm(r, &form)
 	if err != nil {
 		app.clientError(w, http.StatusBadRequest)
 		return
 	}
 
-	fileErrors := make(map[string]string)
-	// title 不能为空和超过100个字符
-	if strings.TrimSpace(title) == "" {
-		fileErrors["title"] = "This field can't be blank"
-	} else if utf8.RuneCountInString(title) > 100 {
-		fileErrors["title"] = "Title can't be more than 100 characters"
+	//expires, err := strconv.Atoi(r.PostForm.Get("expires"))
+	//err = app.formDecoder.Decode(&form, r.PostForm)
+	//if err != nil {
+	//	app.clientError(w, http.StatusBadRequest)
+	//	return
+	//}
+
+	//form := &snippetCreateForm{
+	//	Title:   r.PostForm.Get("title"),
+	//	Content: r.PostForm.Get("content"),
+	//	Expires: expires,
+	//	//FiledErrors: map[string]string{},
+	//}
+
+	form.CheckFiled(validator.NotBlank(form.Title), "title", "This field can't be blank")
+	form.CheckFiled(validator.MaxChars(form.Title, 100), "title", "This field can't be more than 100 characters")
+	form.CheckFiled(validator.NotBlank(form.Content), "content", "This field can't be blank")
+	form.CheckFiled(validator.PermittedInt(form.Expires, 1, 7, 365), "expires", "This field must equal 1, 7 or 365")
+	/*// title 不能为空和超过100个字符
+	if strings.TrimSpace(form.Title) == "" {
+		form.FiledErrors["title"] = "This field can't be blank"
+	} else if utf8.RuneCountInString(form.Title) > 100 {
+		form.FiledErrors["title"] = "Title can't be more than 100 characters"
 	}
 
 	// content 不能为空
-	if strings.TrimSpace(content) == "" {
-		fileErrors["content"] = "This field can't be blank"
+	if strings.TrimSpace(form.Content) == "" {
+		form.FiledErrors["content"] = "This field can't be blank"
 	}
 
-	if expires != 1 && expires != 7 && expires != 365 {
-		fileErrors["expires"] = "This field is invalid"
+	if form.Expires != 1 && form.Expires != 7 && form.Expires != 365 {
+		form.FiledErrors["expires"] = "This field is invalid"
 	}
 
-	if len(fileErrors) > 0 {
-		fmt.Fprint(w, fileErrors)
+	if len(form.FiledErrors) > 0 {
+		data := app.newTemplateData(r)
+		data.Form = form
+		app.render(w, http.StatusUnprocessableEntity, "create.tmpl", data)
+		return
+	}*/
+	if !form.Valid() {
+		data := app.newTemplateData(r)
+		data.Form = form
+		app.render(w, http.StatusUnprocessableEntity, "create.tmpl", data)
 		return
 	}
-	id, err := app.snippets.Insert(title, content, expires)
+
+	id, err := app.snippets.Insert(form.Title, form.Content, form.Expires)
 	if err != nil {
 		app.serverError(w, err)
 		return
