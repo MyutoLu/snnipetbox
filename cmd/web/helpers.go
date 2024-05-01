@@ -49,6 +49,7 @@ func (app *application) render(w http.ResponseWriter,
 func (app *application) newTemplateData(r *http.Request) *templateData {
 	return &templateData{
 		CurrentYear: time.Now().Year(),
+		Flash:       app.sessionManager.PopString(r.Context(), "flash"),
 	}
 }
 
@@ -68,9 +69,9 @@ func (app *application) decodePostForm(r *http.Request, dst any) error {
 	return nil
 }
 
-func (app *application) newTemplate(r *http.Request) *templateData {
-	return &templateData{
-		CurrentYear: time.Now().Year(),
-		Flash:       app.sessionManager.PopString(r.Context(), "flash"),
-	}
-}
+//func (app *application) newTemplate(r *http.Request) *templateData {
+//	return &templateData{
+//		CurrentYear: time.Now().Year(),
+//		Flash:       app.sessionManager.PopString(r.Context(), "flash"),
+//	}
+//}

@@ -18,6 +18,14 @@ type snippetCreateForm struct {
 	validator.Validator `form:"-"`
 }
 
+type userSignupForm struct {
+	Name     string `form:"name"`
+	Email    string `form:"email"`
+	Password string `form:"password"`
+	//FiledErrors         map[string]string
+	validator.Validator `form:"-"`
+}
+
 // home
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	//if r.URL.Path != "/" {
@@ -150,4 +158,26 @@ func (app *application) snippetCreatePost(w http.ResponseWriter, r *http.Request
 	}
 	app.sessionManager.Put(r.Context(), "flash", "成功创建")
 	http.Redirect(w, r, fmt.Sprintf("/snippet/view/%d", id), http.StatusSeeOther)
+}
+
+func (app *application) userSignup(w http.ResponseWriter, r *http.Request) {
+	data := app.newTemplateData(r)
+	data.Form = userSignupForm{}
+	app.render(w, http.StatusOK, "signup.tmpl", data)
+}
+
+func (app *application) userSignupPost(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Create a new user...")
+}
+
+func (app *application) userLogin(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Display a html form for logging in a  user...")
+}
+
+func (app *application) userLoginPost(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Authenticate and login the user...")
+}
+
+func (app *application) userLogoutPost(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Logout the user...")
 }

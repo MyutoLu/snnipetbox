@@ -4,11 +4,21 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10a95080-8c83-43bb-be6e-13cc1886d646" name="Changes" comment="9.3">
-      <change afterPath="$PROJECT_DIR$/tls/cert.pem" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tls/key.pem" afterDir="false" />
+    <list default="true" id="10a95080-8c83-43bb-be6e-13cc1886d646" name="Changes" comment="10.4">
+      <change afterPath="$PROJECT_DIR$/internal/models/user.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/models/users.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/html/pages/signup.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/html/pages/signup1.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/html/pages/signup2.tmpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/web/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/handlers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/web/helpers.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/helpers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/web/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/routes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/models/errors.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/models/errors.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/html/base.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/base.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/html/partials/nav.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/partials/nav.tmpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,11 +74,12 @@
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "F:/gospace/snnipetbox/tls",
+    "last_opened_file_path": "F:/gospace/snnipetbox/ui/html/pages/signup2.tmpl",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "goland.project.structure"
+    "settings.editor.selected.configurable": "goland.project.structure",
+    "two.files.diff.last.used.file": "F:/gospace/snnipetbox/ui/html/pages/signup2.tmpl"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -128,7 +139,8 @@
     <MESSAGE value="5.6" />
     <MESSAGE value="8.6" />
     <MESSAGE value="9.3" />
-    <option name="LAST_COMMIT_MESSAGE" value="9.3" />
+    <MESSAGE value="10.4" />
+    <option name="LAST_COMMIT_MESSAGE" value="10.4" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
