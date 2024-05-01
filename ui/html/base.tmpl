@@ -8,7 +8,7 @@
     <title>{{template "title" .}} - Snippetbox</title>
     <link rel="stylesheet" href="/static/css/main.css">
     <link rel='shortcut icon' type='image/x-icon' href='/static/img/favicon.ico'>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubutun+Mono:400,700">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700'>
     </head>
     <body>
         <header>
@@ -17,6 +17,9 @@
         {{template "nav" .}}
         
         <main>
+            {{with .Flash}}
+                <div class="flash">{{.}}</div>
+            {{end}}
             {{template "main" .}}
         </main>
 
