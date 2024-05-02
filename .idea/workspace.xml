@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10a95080-8c83-43bb-be6e-13cc1886d646" name="Changes" comment="11.4">
+    <list default="true" id="10a95080-8c83-43bb-be6e-13cc1886d646" name="Changes" comment="11.7">
+      <change afterPath="$PROJECT_DIR$/cmd/web/context.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/handlers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/helpers.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/helpers.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/middleware.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/web/templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/templates.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/html/pages/create.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/pages/create.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/html/pages/login.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/pages/login.tmpl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/html/pages/signup.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/pages/signup.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/models/snippets.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/models/snippets.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/models/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/models/users.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/html/partials/nav.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/partials/nav.tmpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -140,7 +137,8 @@
     <MESSAGE value="10.4" />
     <MESSAGE value="11.2" />
     <MESSAGE value="11.4" />
-    <option name="LAST_COMMIT_MESSAGE" value="11.4" />
+    <MESSAGE value="11.7" />
+    <option name="LAST_COMMIT_MESSAGE" value="11.7" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

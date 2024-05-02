@@ -264,3 +264,11 @@ func (app *application) userLogoutPost(w http.ResponseWriter, r *http.Request) {
 	app.sessionManager.Put(r.Context(), "flash", "You've been logged out successfully!")
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
+
+func (app *application) isAuthenticatedUser(r *http.Request) bool {
+	isAuthenticated, ok := r.Context().Value(isAuthenticatedContextKey).(bool)
+	if !ok {
+		return false
+	}
+	return isAuthenticated
+}
