@@ -4,21 +4,21 @@
 <form action='/user/signup' method='POST' novalidate>
     <div>
         <label>Name:</label>
-        {{with .Form.FiledErrors.name}}
+        {{with .Form.FieldErrors.name}}
             <label class='error'>{{.}}</label>
         {{end}}
         <input type='text' name='name' value='{{.Form.Name}}'>
     </div>
     <div>
          <label>Email:</label>
-            {{with .Form.FiledErrors.email}}
+            {{with .Form.FieldErrors.email}}
                 <label class='error'>{{.}}</label>
             {{end}}
             <input type='email' name='email' value='{{.Form.Email}}'>
     </div>
     <div>
         <label>Password:</label>
-             {{with .Form.FiledErrors.password}}
+             {{with .Form.FieldErrors.password}}
                  <label class='error'>{{.}}</label>
              {{end}}
              <input type='password' name='password'>

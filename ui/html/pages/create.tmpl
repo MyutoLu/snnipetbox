@@ -3,7 +3,7 @@
 <form action='/snippet/create' method='POST'>
     <div>
         <label>Title:</label>
-        {{with .Form.FiledErrors.title}}
+        {{with .Form.FieldErrors.title}}
             <label class='error'>{{.}}</label>
         {{end}}
         <input type='text'  name='title' value='{{.Form.Title}}'>
@@ -11,7 +11,7 @@
 
     <div>
        <label>Content:</label>
-        {{with .Form.FiledErrors.content}}
+        {{with .Form.FieldErrors.content}}
               <label class='error'>{{.}}</label>
         {{end}}
        <textarea name='content'>{{.Form.Content}}</textarea>
@@ -19,7 +19,7 @@
 
     <div>
         <label>Delete in:</label>
-        {{with .Form.FiledErrors.expires}}
+        {{with .Form.FieldErrors.expires}}
                <label class='error'>{{.}}</label>
         {{end}}
         <input type='radio' name='expires' value='365' {{if (eq .Form.Expires 365)}}checked{{end}}>  1 Year
