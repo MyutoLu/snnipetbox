@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10a95080-8c83-43bb-be6e-13cc1886d646" name="Changes" comment="11.7">
-      <change afterPath="$PROJECT_DIR$/cmd/web/context.go" afterDir="false" />
+    <list default="true" id="10a95080-8c83-43bb-be6e-13cc1886d646" name="Changes" comment="12.2">
+      <change afterPath="$PROJECT_DIR$/ui/efs.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/web/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/handlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/web/helpers.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/helpers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmd/web/middleware.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/middleware.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/models/snippets.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/models/snippets.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/internal/models/users.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/models/users.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/html/partials/nav.tmpl" beforeDir="false" afterPath="$PROJECT_DIR$/ui/html/partials/nav.tmpl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/web/templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/templates.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,32 +49,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultGoTemplateProperty&quot;: &quot;Go File&quot;,
-    &quot;Go Build.go build myuto.net/snippetbox/cmd/web (1).executor&quot;: &quot;Run&quot;,
-    &quot;Go Build.go build myuto.net/snippetbox/cmd/web.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.automatic.dependencies.download&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/10141&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;,
-    &quot;two.files.diff.last.used.file&quot;: &quot;F:/gospace/snnipetbox/ui/html/pages/signup2.tmpl&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build myuto.net/snippetbox/cmd/web (1).executor": "Run",
+    "Go Build.go build myuto.net/snippetbox/cmd/web.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "master",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "F:/gospace/snnipetbox/ui",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "SQL Dialects",
+    "two.files.diff.last.used.file": "F:/gospace/snnipetbox/ui/html/pages/signup2.tmpl"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\gospace\snnipetbox\ui" />
       <recent name="F:\gospace\snnipetbox\tls" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\gospace\snnipetbox\ui" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build myuto.net/snippetbox/cmd/web">
@@ -138,7 +142,8 @@
     <MESSAGE value="11.2" />
     <MESSAGE value="11.4" />
     <MESSAGE value="11.7" />
-    <option name="LAST_COMMIT_MESSAGE" value="11.7" />
+    <MESSAGE value="12.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="12.2" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
