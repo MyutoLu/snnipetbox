@@ -127,7 +127,7 @@ func (app *application) snippetCreatePost(w http.ResponseWriter, r *http.Request
 	form.CheckFiled(validator.NotBlank(form.Title), "title", "This field can't be blank")
 	form.CheckFiled(validator.MaxChars(form.Title, 100), "title", "This field can't be more than 100 characters")
 	form.CheckFiled(validator.NotBlank(form.Content), "content", "This field can't be blank")
-	form.CheckFiled(validator.PermittedInt(form.Expires, 1, 7, 365), "expires", "This field must equal 1, 7 or 365")
+	form.CheckFiled(validator.PermittedValue(form.Expires, 1, 7, 365), "expires", "This field must equal 1, 7 or 365")
 	/*// title 不能为空和超过100个字符
 	if strings.TrimSpace(form.Title) == "" {
 		form.FiledErrors["title"] = "This field can't be blank"
